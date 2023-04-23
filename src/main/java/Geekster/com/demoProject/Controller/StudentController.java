@@ -1,9 +1,7 @@
 package Geekster.com.demoProject.Controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.json.JSONObject;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class StudentController {
@@ -18,5 +16,14 @@ public class StudentController {
     @PutMapping(value="/Student")
     public static String StudentputInfo(){
         return "this information about put student";
+    }
+    @PostMapping(value="/Student")
+    public static String StudentSaveInfo(@RequestBody String requestData){
+        JSONObject obj = new JSONObject(requestData);
+        System.out.print(requestData);
+        System.out.println(obj.getString("name"));
+        System.out.println(obj.getInt("age"));
+        System.out.println(obj.getString("username"));
+        return "Saved"+requestData;
     }
 }
